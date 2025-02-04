@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Encuesta_Satisfacion/static/css/main.e8cbcdd2.css",
-    "main.js": "/Encuesta_Satisfacion/static/js/main.d963bedd.js",
-    "static/js/453.60819993.chunk.js": "/Encuesta_Satisfacion/static/js/453.60819993.chunk.js",
-    "index.html": "/Encuesta_Satisfacion/index.html",
-    "main.e8cbcdd2.css.map": "/Encuesta_Satisfacion/static/css/main.e8cbcdd2.css.map",
-    "main.d963bedd.js.map": "/Encuesta_Satisfacion/static/js/main.d963bedd.js.map",
-    "453.60819993.chunk.js.map": "/Encuesta_Satisfacion/static/js/453.60819993.chunk.js.map"
+    "main.css": "/Encuesta_Satisfaccion/static/css/main.e8cbcdd2.css",
+    "main.js": "/Encuesta_Satisfaccion/static/js/main.bf704997.js",
+    "static/js/453.60819993.chunk.js": "/Encuesta_Satisfaccion/static/js/453.60819993.chunk.js",
+    "index.html": "/Encuesta_Satisfaccion/index.html",
+    "main.e8cbcdd2.css.map": "/Encuesta_Satisfaccion/static/css/main.e8cbcdd2.css.map",
+    "main.bf704997.js.map": "/Encuesta_Satisfaccion/static/js/main.bf704997.js.map",
+    "453.60819993.chunk.js.map": "/Encuesta_Satisfaccion/static/js/453.60819993.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e8cbcdd2.css",
-    "static/js/main.d963bedd.js"
+    "static/js/main.bf704997.js"
   ]
 }
