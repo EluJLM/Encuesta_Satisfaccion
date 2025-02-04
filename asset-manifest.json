@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Encuesta_Satisfacion/static/css/main.e8cbcdd2.css",
+    "main.js": "/Encuesta_Satisfacion/static/js/main.b36aeabc.js",
+    "static/js/453.60819993.chunk.js": "/Encuesta_Satisfacion/static/js/453.60819993.chunk.js",
+    "index.html": "/Encuesta_Satisfacion/index.html",
+    "main.e8cbcdd2.css.map": "/Encuesta_Satisfacion/static/css/main.e8cbcdd2.css.map",
+    "main.b36aeabc.js.map": "/Encuesta_Satisfacion/static/js/main.b36aeabc.js.map",
+    "453.60819993.chunk.js.map": "/Encuesta_Satisfacion/static/js/453.60819993.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8cbcdd2.css",
+    "static/js/main.b36aeabc.js"
+  ]
+}
