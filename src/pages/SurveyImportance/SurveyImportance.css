@@ -1,0 +1,32 @@
+.container-inicio{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0;
+    width: 100%;
+    align-items: center;
+}
+.container-inicio h2{
+    font-size: 1.4em;
+}
+.survey-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.survey-content .razon{
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    box-shadow: 0 0 6px #00000077;
+    border-radius: 10px;
+    text-align: center;
+}
+.razon h3{
+    font-size: 1.2rem;
+}
+.razon p{
+    width: 100%;
+    font-size: 1rem;
+}
