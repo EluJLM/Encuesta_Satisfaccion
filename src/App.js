@@ -7,7 +7,7 @@ import SurveyImportance from './pages/SurveyImportance/SurveyImportance';
 
 function App() {
   return (
-    <Router>
+    <div>
       <div className="app-container">
         <nav className="navbar">
           <ul className="nav-list">
@@ -35,7 +35,7 @@ function App() {
           </div>
         </footer>
       </div>
-    </Router>
+    </div>
   );
 }
 
