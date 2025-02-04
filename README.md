@@ -46,7 +46,7 @@ Asegúrate de tener instalado Node.js y npm en tu sistema.
 Para habilitar la integración con Google Sheets, sigue estos pasos:
 
   ```
-  [HOJA PUBLICA PARA PRUEBAS](https://docs.google.com/spreadsheets/d/1xpqeRVU4XHIfs7f92kGHcOAMl2PDoUVF2HvlSP3i7aU/edit?gid=0#gid=0)
+  https://docs.google.com/spreadsheets/d/1xpqeRVU4XHIfs7f92kGHcOAMl2PDoUVF2HvlSP3i7aU/edit?gid=0#gid=0
   ```
    
 1. **Crear una Hoja de Cálculo en Google Sheets** con dos pestañas: `Tokens` y `Respuestas`.
