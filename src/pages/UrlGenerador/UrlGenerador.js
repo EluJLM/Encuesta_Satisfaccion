@@ -14,7 +14,7 @@ const UrlGenerator = () => {
   useEffect(() => {
     const formattedService = service.replaceAll(" ", "_");
     const formattedClientName = clientName.replaceAll(" ", "_");
-    const url = `localhost:3000/satisfaccion?nameservice=${formattedService}&nameuser=${formattedClientName}&token=${token}`;
+    const url = `https://en-de-satisfaccion.web.app/satisfaccion?nameservice=${formattedService}&nameuser=${formattedClientName}&token=${token}`;
     setGeneratedUrl(url);
   }, [service, clientName, token]);
 
@@ -35,7 +35,7 @@ const UrlGenerator = () => {
 
   return (
     <div className="urlgenerador">
-      <h2>Generador de URLs para encuenta</h2>
+      <h2>Generador de URLs para encuesta</h2>
       <h4>Recuerde añadir el token al backend</h4>
       <div>
         <label>

@@ -48,7 +48,7 @@ const Satisfaccion = () => {
 
     try {
       const response = await fetch(// esta de aqui abajo es la URL del Webhook
-        "https://script.google.com/macros/s/AKfycbzyRjaFBWNImk_fhiZu1395uBQUi_Ye1xeRxEfUxpSvmSv01dIBzEJFsryiv97DFGAZ/exec",
+        "https://script.google.com/macros/s/AKfycbxTHCK3EpfZ1IKgN_D4n-P1O4B6U_R7iS_m5UZ4p4yhoxMtaD8Rnu1-wO_pU_367i7I/exec",
         {
           method: "POST",
           headers: {

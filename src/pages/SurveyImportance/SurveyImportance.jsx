@@ -16,7 +16,6 @@ const SurveyImportance = () => {
       <h2 className="survey-title">
         Razones para una encuesta
       </h2>
-      <div className="survey-card">
         <div className="survey-content">
           {razones.length > 0 ? (
             razones.map((razon, index) => <Razon key={index} {...razon} />)
@@ -24,7 +23,6 @@ const SurveyImportance = () => {
             <p>Cargando razones...</p>
           )}
       </div>
-    </div>
 
     
     </div>
