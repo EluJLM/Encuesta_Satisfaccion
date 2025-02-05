@@ -8,6 +8,8 @@ La hoja de Google Sheets utilizada para almacenar los datos está disponible en:
 
 📄 **[Google Sheets - Tokens y Respuestas](https://docs.google.com/spreadsheets/d/1xpqeRVU4XHIfs7f92kGHcOAMl2PDoUVF2HvlSP3i7aU/edit?gid=971993185#gid=971993185)**
 
+---
+
 ## **Cómo Usar la Aplicación**
 
 ### **Paso 1: Generar un Token**
@@ -23,7 +25,7 @@ La hoja de Google Sheets utilizada para almacenar los datos está disponible en:
 ### **Paso 2: Registrar el Token en Google Sheets**
 
 1. Abre la hoja de Google Sheets en el siguiente enlace:
-   📄 **[Google Sheets - Tokens y Respuestas](https://docs.google.com/spreadsheets/d/1xpqeRVU4XHIfs7f92kGHcOAMl2PDoUVF2HvlSP3i7aU/edit?gid=971993185#gid=971993185)**
+   📄 **[Google Sheets - Tokens y Respuestas](https://docs.google.com/spreadsheets/d/1xpqeRVU4XHIfs7f92kGHcOAMl2PDoUVF2HvlSP3i7aU/edit?gid=971993185)**
 2. Pega el token en una fila disponible dentro de la pestaña **"Tokens"**.
 3. Guarda los cambios.
 
@@ -33,21 +35,86 @@ La hoja de Google Sheets utilizada para almacenar los datos está disponible en:
 2. Copia la URL generada para la encuesta.
 3. Envía el enlace al cliente para que complete la encuesta.
 
-## **Características Principales**
+---
 
-- **Generación de URLs con Token**: Se crea un enlace único para cada cliente.
-- **Formulario de Encuesta**: Diseño intuitivo para responder rápidamente.
-- **Integración con Google Sheets**: Datos guardados en tiempo real.
+### Configuración de Google Sheets
+Para habilitar la integración con Google Sheets, sigue estos pasos:
+   
+1. **Crear una Hoja de Cálculo en Google Sheets** con dos pestañas: `Tokens` y `Respuestas`.
+2. **Obtener la URL de la Hoja de Cálculo** y usarla en el código de Google Apps Script.
+3. **Configurar Google Apps Script**:
+   - Abre Google Sheets y ve a `Extensiones` > `Apps Script`.
+   - Pega el siguiente código en el editor de Apps Script:
+   ```javascript
+   const sheets = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1xpqeRVU4XHIfs7f92kGHcOAMl2PDoUVF2HvlSP3i7aU/edit?gid=0#gid=0");
+   // Cambia "Respuestas" y "Tokens" por los nombres reales de tus hojas si son diferentes.
+   const sheetRespuestas = sheets.getSheetByName("Respuestas");
+   const sheetTokens = sheets.getSheetByName("Tokens");
+   function doPost(e) {
+     let data = e.parameter;
+     
+     if (!data.token) {
+       return ContentService.createTextOutput("Error: Falta el token.").setMimeType(ContentService.MimeType.TEXT);
+     }
+     // Buscar el token en la hoja "Tokens"
+     const tokenData = buscarToken(data.token);
+     if (!tokenData || tokenData.estado !== "Disponible") {
+       return ContentService.createTextOutput("Error: Token inválido o ya utilizado.").setMimeType(ContentService.MimeType.TEXT);
+     }
+     // Marcar el token como "Usado"
+     actualizarEstadoToken(tokenData.fila, "Usado");
+     // Agregar los datos a la hoja "Respuestas"
+     sheetRespuestas.appendRow([
+       new Date(), // Fecha actual
+       data.service,
+       data.clientName,
+       data.priceRating,
+       data.deliveryTimeRating,
+       data.recommendation,
+       data.deviceCondition,
+       data.comments,
+       data.improve
+     ]);
+     return ContentService.createTextOutput("¡Tu mensaje fue enviado exitosamente a la base de datos de Google Sheets!").setMimeType(ContentService.MimeType.TEXT);
+   }
+   function buscarToken(token) {
+     const tokens = sheetTokens.getDataRange().getValues(); // Obtener todos los datos de la hoja "Tokens"
+     for (let i = 1; i < tokens.length; i++) { // Empezar desde la fila 1 (asumiendo que la fila 0 son encabezados)
+       if (tokens[i][0] === token) { // Columna 0: Token
+         return { 
+           fila: i + 1, // Fila en la hoja (índice + 1 porque las filas en Apps Script empiezan en 1)
+           estado: tokens[i][1] // Columna 1: Estado
+         };
+       }
+     }
+     return null; // Token no encontrado
+   }
+   function actualizarEstadoToken(fila, nuevoEstado) {
+     sheetTokens.getRange(fila, 2).setValue(nuevoEstado); // Columna 2: Estado
+   }
+   ```
+4. **Guardar y desplegar el script** como un servicio web:
+   - Ve a `Implementar` > `Nueva Implementación`.
+   - Selecciona `Aplicación Web`.
+   - En "Ejecutar como", selecciona `Tú`.
+   - En "Quién tiene acceso", elige `Cualquiera`.
+   - Haz clic en `Implementar` y copia la URL generada.
+5. **Usar la URL del Webhook** en tu aplicación React para enviar respuestas de la encuesta a Google Sheets.
+
+---
 
 ## **Tecnologías Utilizadas**
 
 - React (Create React App)
-- Google Sheets API
+- Google Sheets API y Apps Script
 - CSS para el diseño del formulario
 
-## **Instalación y Configuración**
+---
+
+## **Instalación y Configuración en Local**
 
 ### **Prerrequisitos**
+
 Asegúrate de tener instalado Node.js y npm en tu sistema.
 
 ### **Instalación**
@@ -68,22 +135,7 @@ Para iniciar la aplicación en modo desarrollo:
 ```bash
 npm start
 ```
-La aplicación estará disponible en [http://localhost:3000](http://localhost:3000).
-
-### **Despliegue**
-
-Para construir la versión de producción:
-```bash
-npm run build
-```
-Puedes desplegar la aplicación en servicios como **Firebase Hosting**, **Vercel** o **Netlify**.
-
-## **Contribución**
-Si deseas contribuir a este proyecto, puedes hacer un fork del repositorio, crear una nueva rama con tus cambios y hacer un pull request.
-
-## **Contacto**
-Si tienes preguntas o sugerencias, puedes contactarme en [elulozano92@gmail.com](mailto:elulozano92@gmail.com).
 
 ---
-© 2025 - Todos los derechos reservados.
+
 
